@@ -1,1 +1,1 @@
-export const logo = ''
+export const logo = 'youtube-button-logo.png'
