@@ -1,16 +1,26 @@
 import {Avatar, Card, CardContent, CardMedia, Stack, Typography} from "@mui/material";
+import CheckCircle from '@mui/icons-material/CheckCircle';
 import {colors} from "../../constants/colors";
 import moment from "moment";
 
 const VideoCard = ({video}) => {
     return (
         <Card sx={{
-            width: '300px',
+            width: {
+                xs: '100%',
+                sm: '320px',
+                md: '340px',
+                lg: '360px',
+            },
             boxShadow: 'none',
             borderRadius: '0'
         }}>
-            <CardMedia image={video?.snippet?.thumbnails?.high?.url} alt={video?.snippet?.title}
-                       sx={{width: '360px', height: '180px'}}
+
+        <CardMedia image={video?.snippet?.thumbnails?.high?.url} alt={video?.snippet?.title}
+                       sx={{
+                           width: { xs: '300px', md: '320px', lg: '360px', xl: '380px' },
+                           height: '200px'
+                       }}
             />
             <CardContent
                 sx={{background:colors.primary, height:'200px', position:'relative'}}
@@ -33,6 +43,7 @@ const VideoCard = ({video}) => {
                         <Avatar src={video?.snippet?.thumbnails?.default?.url} />
                         <Typography variant={'subtitle2'} color={'gray'}>
                             {video?.snippet?.channelTitle}
+                            <CheckCircle />
                         </Typography>
                     </Stack>
                 </>
