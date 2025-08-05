@@ -1,7 +1,6 @@
 import { Paper, IconButton } from '@mui/material'
 import { Search } from '@mui/icons-material'
 import { colors } from '../../constants/colors'
-import { Search } from '@mui/icons-material'
 
 const SearchBar = () => {
   return (

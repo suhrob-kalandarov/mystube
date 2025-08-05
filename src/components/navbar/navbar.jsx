@@ -17,7 +17,7 @@ const Navbar = () => {
       zIndex: 999,
       background: colors.primary
     }}>
-      <Link>
+      <Link to='/'>
         <img src={logo} alt='youtube-button-logo' height={30}/>
       </Link>
       <SearchBar />

@@ -1,5 +1,7 @@
+import { useParams } from 'react-router-dom'
 
 const Channel = () => {
+  const params = useParams()
   return (
     <div>Channel</div>
   )
