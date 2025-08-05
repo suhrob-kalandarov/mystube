@@ -17,8 +17,8 @@ const Main = () => {
             const data = await ApiService.fetching(`search?part=snippet&q=${selectedCategory}`);
             setVideos(data.items);
         }
-        getData().then(r => console.log(videos));
-    }, [])
+        getData();
+    }, [selectedCategory])
 
     return (
         <Stack>
