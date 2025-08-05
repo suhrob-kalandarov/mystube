@@ -1,5 +1,7 @@
 export { default as App } from './app/app'
 export { default as Main } from './main/main'
+export { default as Videos } from './video/video'
+export { default as VideoCard } from './video-card/video-card'
 export { default as Category} from './category/category'
 export { default as Channel } from './channel/channel'
 export { default as Navbar } from './navbar/navbar'
