@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { colors } from '../../constants/colors'
-import {Box, Container, Stack, Typography} from '@mui/material'
+import { Box, Container, Stack, Typography } from '@mui/material'
 
-import {Category} from '../'
+import { Category } from '../'
+import { ApiService } from '../../service/api.service'
 
 const Main = () => {
     const [selectedCategory, setSelectedCategory] = useState('New')
 
     const selectedCategoryHandler = (category) => setSelectedCategory(category)
+
+    useEffect(() => {
+        ApiService.fetching('search').then(data => console.log(data))
+    }, [])
 
     return (
         <Stack>
