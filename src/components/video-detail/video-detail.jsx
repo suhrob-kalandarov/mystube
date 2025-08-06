@@ -5,10 +5,11 @@ import  CheckCircle from "@mui/icons-material/CheckCircle";
 import { Avatar, Box, Chip, Stack, Typography } from "@mui/material";
 import { FavoriteOutlined, MarkChatRead, Tag, Visibility } from "@mui/icons-material";
 import ReactPlayer from 'react-player'
-import {Loader} from "../index";
+import {Loader, Videos} from "../index";
 
 const VideoDetail = () => {
   const [ videoDetail, setVideoDetail ] = useState(null)
+  const [ relatedVideoDetail, setRelatedVideoDetail ] = useState(null)
   const { id } = useParams()
 
   useEffect(() => {
@@ -16,6 +17,10 @@ const VideoDetail = () => {
       try {
         const data = await ApiService.fetching(`videos?part=snippet,statistics&id=${id}`);
         setVideoDetail(data.items[0])
+        const relatedData = await ApiService.fetching(
+            `search?part=snippet&relatedToVideoId=${id}&type=video`
+        );
+        setRelatedVideoDetail(relatedData.items)
       } catch (e) {
         console.log(e)
       }
@@ -24,9 +29,10 @@ const VideoDetail = () => {
   }, [id]);
 
   if (!videoDetail) return <Loader />
+  if (!relatedVideoDetail) return <Loader />
 
   const {
-    snippet: { title, channelId, channelTitle, description, thumbnails, tags},
+    snippet: { title, channelTitle, description, thumbnails, tags},
     statistics: {viewCount, likeCount, commentCount},
   } = videoDetail
 
@@ -87,7 +93,9 @@ const VideoDetail = () => {
               </Stack>
             </Stack>
           </Box>
-          <Box width={{ xs: '100%', md: '25%'}}>Suggested videos</Box>
+          <Box width={{ xs: '100%', md: '25%'}}>
+            <Videos videos={relatedVideoDetail} />
+          </Box>
         </Box>
       </Box>
   )
