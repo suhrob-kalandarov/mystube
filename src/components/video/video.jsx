@@ -1,7 +1,10 @@
 import {Box, Stack} from "@mui/material";
-import { VideoCard, ChannelCard } from "../";
+import { VideoCard, ChannelCard, Loader } from "../";
 
 function Video({ videos }) {
+
+    if (!videos.length) return <Loader />
+
     return (
         <Stack
             width={'100%'}
