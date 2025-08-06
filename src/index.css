@@ -12,6 +12,7 @@ a {
 .react-player {
     height: 65vh !important;
     width: 99% !important;
+    margin-left: 10px;
 }
 
 ::-webkit-scrollbar {
