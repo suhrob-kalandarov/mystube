@@ -29,11 +29,13 @@ const VideoCard = ({video}) => {
                 sx={{background:colors.primary, height:'200px', position:'relative'}}
             >
                 <>
-                    <Typography my={'5px'} sx={{ opacity: '4' }}>
-                        {moment(video?.snippet?.publishedAt).fromNow()}
-                    </Typography>
-                    <Typography variant={'subtitle1'} fontWeight={'bold'}>{video?.snippet?.title.slice(0, 50)}</Typography>
-                    <Typography variant={'subtitle2'} sx={{opacity: '0.6'}}>{video?.snippet?.description.slice(0, 70)}</Typography>
+                    <Link to={`/video/${video.id.videoId}`}>
+                        <Typography my={'5px'} sx={{ opacity: '4' }}>
+                            {moment(video?.snippet?.publishedAt).fromNow()}
+                        </Typography>
+                        <Typography variant={'subtitle1'} fontWeight={'bold'}>{video?.snippet?.title.slice(0, 50)}</Typography>
+                        <Typography variant={'subtitle2'} sx={{opacity: '0.6'}}>{video?.snippet?.description.slice(0, 70)}</Typography>
+                    </Link>
                 </>
                 <>
                     <Stack
