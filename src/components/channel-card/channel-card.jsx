@@ -1,7 +1,8 @@
 import {Box, CardContent, CardMedia, Typography} from "@mui/material";
 import CheckCircle from '@mui/icons-material/CheckCircle';
+import {Link} from "react-router-dom";
 
-const ChannelCard = ({ video }) => {
+const ChannelCard = ({ channelDetail, marginTop }) => {
     return (
        <Box sx={{
            boxShadow: 'none',
@@ -11,40 +12,43 @@ const ChannelCard = ({ video }) => {
            alignItems: 'center',
            width: { xs:'365px', md:'320px' },
            height: '326px',
-           margin: 'auto'
+           margin: 'auto',
+           marginTop: marginTop
        }}
        >
-           <CardContent
-               sx={{
-                   display: 'flex',
-                   flexDirection: 'column',
-                   justifyContent: 'center',
-                   textAlign: 'center',
-               }}
-           >
-               <CardMedia
-                   image={video?.snippet?.thumbnails?.default?.url}
-                   alt={video?.snippet?.title}
+           <Link to={`/channel/${channelDetail?.snippet?.channelId}`}>
+               <CardContent
                    sx={{
-                       borderRadius: '50%',
-                       height: '180px',
-                       width: '180px',
-                       mb: 2,
-                       border: '1px solid #e3e3e3'
+                       display: 'flex',
+                       flexDirection: 'column',
+                       justifyContent: 'center',
+                       textAlign: 'center',
                    }}
-               />
-               <Typography variant={'h6'}>
-                   {video?.snippet?.title}{' '}
-                   <CheckCircle sx={{ fontSize: '14px', color: 'gray', ml: '5px' }} />
-               </Typography>
-               {video?.statistics?.subscriberCount && (
-                   <Typography
-                       sx={{ fontSize: '15px', fontWeight: 500, color: 'gray' }}
-                   >
-                       {parseInt(video?.statistics?.subscriberCount).toLocaleString('en-US')}{' '} Subscribers
+               >
+                   <CardMedia
+                       image={channelDetail?.snippet?.thumbnails?.high?.url}
+                       alt={channelDetail?.snippet?.title}
+                       sx={{
+                           borderRadius: '50%',
+                           height: '180px',
+                           width: '180px',
+                           mb: 2,
+                           border: '1px solid #e3e3e3'
+                       }}
+                   />
+                   <Typography variant={'h6'}>
+                       {channelDetail?.snippet?.title}{' '}
+                       <CheckCircle sx={{ fontSize: '14px', color: 'gray', ml: '5px' }} />
                    </Typography>
-               )}
-           </CardContent>
+                   {channelDetail?.statistics?.subscriberCount && (
+                       <Typography
+                           sx={{ fontSize: '15px', fontWeight: 500, color: 'gray' }}
+                       >
+                           {parseInt(channelDetail?.statistics?.subscriberCount).toLocaleString('en-US')}{' '} Subscribers
+                       </Typography>
+                   )}
+               </CardContent>
+           </Link>
        </Box>
     )
 }

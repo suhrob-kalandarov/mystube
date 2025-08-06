@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ApiService } from "../../service/api.service";
 import  CheckCircle from "@mui/icons-material/CheckCircle";
@@ -32,7 +32,7 @@ const VideoDetail = () => {
   if (!relatedVideoDetail) return <Loader />
 
   const {
-    snippet: { title, channelTitle, description, thumbnails, tags},
+    snippet: { title, channelTitle, channelId, description, thumbnails, tags},
     statistics: {viewCount, likeCount, commentCount},
   } = videoDetail
 
@@ -80,17 +80,20 @@ const VideoDetail = () => {
                 {parseInt(commentCount).toLocaleString('en-US')} comments
               </Stack>
             </Stack>
+
             <Stack direction='row' py={1} px={2}>
-              <Stack direction='row' alignItems='center' gap='5px' marginTop='5px'>
-                <Avatar
-                    alt={channelTitle}
-                    src={thumbnails.default.url}
-                />
-                <Typography variant='subtitle2' color='gray'>
-                  {channelTitle}
-                  <CheckCircle sx={{fontSize: '14px', color: 'gray', ml: '5px', mb: '-2px'}} />
-                </Typography>
-              </Stack>
+              <Link to={`/channel/${channelId}`}>
+                <Stack direction='row' alignItems='center' gap='5px' marginTop='5px'>
+                  <Avatar
+                      alt={channelTitle}
+                      src={thumbnails.default.url}
+                  />
+                  <Typography variant='subtitle2' color='gray'>
+                    {channelTitle}
+                    <CheckCircle sx={{fontSize: '14px', color: 'gray', ml: '5px', mb: '-2px'}} />
+                  </Typography>
+                </Stack>
+              </Link>
             </Stack>
           </Box>
           <Box width={{ xs: '100%', md: '25%'}}>
