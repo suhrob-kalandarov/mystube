@@ -9,6 +9,11 @@ a {
     color: black;
 }
 
+.react-player {
+    height: 77vh !important;
+    width: 100% !important;
+}
+
 ::-webkit-scrollbar {
     width: 0px;
     height: 1px;
@@ -55,5 +60,9 @@ a {
 @media screen and (max-width: 600px) {
     .search-bar {
         width: 200px
+    }
+
+    .react-player {
+        height: 45vh !important;
     }
 }
