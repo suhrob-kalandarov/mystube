@@ -1,5 +1,6 @@
 import {Avatar, Card, CardContent, CardMedia, Stack, Typography} from "@mui/material";
 import CheckCircle from '@mui/icons-material/CheckCircle';
+import {Link} from "react-router-dom";
 import {colors} from "../../constants/colors";
 import moment from "moment";
 
@@ -16,12 +17,14 @@ const VideoCard = ({video}) => {
             borderRadius: '0'
         }}>
 
-        <CardMedia image={video?.snippet?.thumbnails?.high?.url} alt={video?.snippet?.title}
-                       sx={{
-                           width: { xs: '300px', md: '320px', lg: '360px', xl: '380px' },
-                           height: '200px'
-                       }}
-            />
+            <Link to={`/video/${video.id.videoId}`}>
+                <CardMedia image={video?.snippet?.thumbnails?.high?.url} alt={video?.snippet?.title}
+                           sx={{
+                               width: { xs: '300px', md: '320px', lg: '360px', xl: '380px' },
+                               height: '200px'
+                           }}
+                />
+            </Link>
             <CardContent
                 sx={{background:colors.primary, height:'200px', position:'relative'}}
             >
@@ -43,7 +46,7 @@ const VideoCard = ({video}) => {
                         <Avatar src={video?.snippet?.thumbnails?.default?.url} />
                         <Typography variant={'subtitle2'} color={'gray'}>
                             {video?.snippet?.channelTitle}
-                            <CheckCircle />
+                            <CheckCircle sx={{fontSize: '14px', color: 'gray', ml: '5px', mb: '-2px'}} />
                         </Typography>
                     </Stack>
                 </>
